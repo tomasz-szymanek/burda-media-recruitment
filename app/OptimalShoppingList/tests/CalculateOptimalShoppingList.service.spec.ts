@@ -5,7 +5,7 @@ import { CalculateOptimalShoppingList } from "../CalculateOptimalShoppingList.se
 
 let service: CalculateOptimalShoppingList;
 
-describe("getOptimalShoppingList", () => {
+describe("CalculateOptimalShoppingList::execute", () => {
   before(async () => {
     service = container.resolve<CalculateOptimalShoppingList>(
       CalculateOptimalShoppingList
