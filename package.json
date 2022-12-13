@@ -9,10 +9,10 @@
   "private": true,
   "scripts": {
     "build": "tsc && yarn run swagger:generate",
-    "start": "node dist/index.js",
+    "start": "yarn run build && node dist/index.js",
     "swagger:generate": "node generate-swagger.js",
     "lint": "eslint .",
-    "prettier": "prettier --check .",
+    "format:check": "prettier --check .",
     "test": "yarn run build && mocha './dist/**/tests/**/*.js' --recursive --timeout 60000 --exit"
   },
   "devDependencies": {
@@ -30,6 +30,7 @@
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.2",
     "mocha": "^10.2.0",
     "prettier": "^2.8.1",
     "swagger-jsdoc": "^6.2.5",
