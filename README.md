@@ -29,7 +29,7 @@ docker compose up
 
 - To run tests use `yarn run test`
 - To start the app use `yarn run start`
-- To lint and check the code use `yarn run lint && yarn run prettier`
+- To lint and check the code use `yarn run lint && yarn run format:check`
 
 ## husky
 
