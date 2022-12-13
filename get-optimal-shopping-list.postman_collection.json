@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "198c7060-cb58-4956-b0b3-9216dea07b11",
+		"name": "get-optimal-shopping-list",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21609429"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/get-optimal-shopping-list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amountOfPurchases\": 218,\n    \"products\": [\n        {\"name\": \"example\", \"review_rating\": 600, \"price\": 215 },\n        {\"name\": \"example2\", \"review_rating\": 2, \"price\": 5 },\n        {\"name\": \"example3\", \"review_rating\": 2, \"price\": 5 },\n        {\"name\": \"example4\", \"review_rating\": 2, \"price\": 5 },\n        {\"name\": \"example5\", \"review_rating\": 4, \"price\": 5 },\n        {\"name\": \"example6\", \"review_rating\": 3, \"price\": 5 },\n        {\"name\": \"example7\", \"review_rating\": 15, \"price\": 5 }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/get-optimal-shopping-list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-optimal-shopping-list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
