@@ -12,14 +12,21 @@ export class OptimalShoppingListController {
 
   /**
    * @openapi
-   * /:
-   *   post:
-   *     description: Endpoint returning optimal shopping list
-   *     responses:
-   *       200:
-   *         description: Returns optimal shopping list.
-   *       400:
-   *         description: Returns validation info.
+   *      /get-optimal-shopping-list:
+   *        post:
+   *          description: Get optimal shoping list
+   *          parameters:
+   *            - name: products and limit
+   *              in: body
+   *              description: products and price limit TBD
+   *          produces:
+   *            - application/json
+   *          responses:
+   *            '200':
+   *              description: 'OK'
+   *            '400':
+   *              description: 'bad request'
+   *
    */
   public getOptimalShoppingList = (req: Request, res: Response) => {
     const { amountOfPurchases, products } = req.body;

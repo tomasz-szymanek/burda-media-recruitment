@@ -2,13 +2,19 @@ import { injectable } from "inversify";
 import { Item } from "./types/interfaces";
 import "reflect-metadata";
 
+interface KnapsackItem {
+  weight: number;
+  value: number;
+  name: string;
+}
+
 @injectable()
 export class CalculateOptimalShoppingList {
   private calculateKnapsack(
-    items: { weight: number; value: number; name: string }[],
+    items: KnapsackItem[],
     limit: number
   ): {
-    subset: { weight: number; value: number; name: string }[];
+    subset: KnapsackItem[];
     maxValue: number;
   } {
     if (!items.length) {
@@ -17,7 +23,7 @@ export class CalculateOptimalShoppingList {
 
     const accumulator: {
       maxValue: number;
-      subset: { weight: number; value: number; name: string }[];
+      subset: KnapsackItem[];
     }[][] = [];
 
     items.map((_, index) => {
@@ -38,7 +44,7 @@ export class CalculateOptimalShoppingList {
     function getSolution(row: number, solutionLimit: number) {
       const NO_SOLUTION: {
         maxValue: number;
-        subset: { weight: number; value: number; name: string }[];
+        subset: KnapsackItem[];
       } = {
         maxValue: 0,
         subset: [],
@@ -72,9 +78,7 @@ export class CalculateOptimalShoppingList {
     }
   }
 
-  private parse(
-    products: Item[]
-  ): { weight: number; value: number; name: string }[] {
+  private parse(products: Item[]): KnapsackItem[] {
     return products.map((product) => ({
       weight: product.price,
       value: product.review_rating,
@@ -88,12 +92,10 @@ export class CalculateOptimalShoppingList {
       amountOfPurchases
     );
 
-    return result.subset.map(
-      (item: { weight: number; value: number; name: string }) => ({
-        price: item.weight,
-        review_rating: item.value,
-        name: item.name,
-      })
-    );
+    return result.subset.map((item: KnapsackItem) => ({
+      price: item.weight,
+      review_rating: item.value,
+      name: item.name,
+    }));
   };
 }
