@@ -5,16 +5,19 @@ import "reflect-metadata";
 @injectable()
 export class CalculateOptimalShoppingList {
   private calculateKnapsack(
-    items: { w: number; v: number; name: string }[],
+    items: { weight: number; value: number; name: string }[],
     limit: number
-  ): { subset: { w: number; v: number; name: string }[]; maxValue: number } {
+  ): {
+    subset: { weight: number; value: number; name: string }[];
+    maxValue: number;
+  } {
     if (!items.length) {
       return { maxValue: 0, subset: [] };
     }
 
     const accumulator: {
       maxValue: number;
-      subset: { w: number; v: number; name: string }[];
+      subset: { weight: number; value: number; name: string }[];
     }[][] = [];
 
     items.map((_, index) => {
@@ -35,14 +38,14 @@ export class CalculateOptimalShoppingList {
     function getSolution(row: number, solutionLimit: number) {
       const NO_SOLUTION: {
         maxValue: number;
-        subset: { w: number; v: number; name: string }[];
+        subset: { weight: number; value: number; name: string }[];
       } = {
         maxValue: 0,
         subset: [],
       };
       const column = solutionLimit - 1;
       const lastItem = items[row];
-      const remaining = solutionLimit - lastItem.w;
+      const remaining = solutionLimit - lastItem.weight;
 
       const lastSolution =
         row > 0 ? accumulator[row - 1][column] || NO_SOLUTION : NO_SOLUTION;
@@ -58,7 +61,7 @@ export class CalculateOptimalShoppingList {
       const lastValue = lastSolution.maxValue;
       const lastSubValue = lastSubSolution.maxValue;
 
-      const newValue = lastSubValue + lastItem.v;
+      const newValue = lastSubValue + lastItem.value;
       if (newValue >= lastValue) {
         const _lastSubSet = lastSubSolution.subset.slice();
         _lastSubSet.push(lastItem);
@@ -69,10 +72,12 @@ export class CalculateOptimalShoppingList {
     }
   }
 
-  private parse(products: Item[]): { w: number; v: number; name: string }[] {
+  private parse(
+    products: Item[]
+  ): { weight: number; value: number; name: string }[] {
     return products.map((product) => ({
-      w: product.price,
-      v: product.review_rating,
+      weight: product.price,
+      value: product.review_rating,
       name: product.name,
     }));
   }
@@ -84,9 +89,9 @@ export class CalculateOptimalShoppingList {
     );
 
     return result.subset.map(
-      (item: { w: number; v: number; name: string }) => ({
-        price: item.w,
-        review_rating: item.v,
+      (item: { weight: number; value: number; name: string }) => ({
+        price: item.weight,
+        review_rating: item.value,
         name: item.name,
       })
     );
