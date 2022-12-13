@@ -46,6 +46,10 @@ After starting project, documentation is available under
 http://localhost:${PORT}/documentation
 ```
 
+## postman collection
+
+There is an example postman collection in the repository. In real life situation i tend to create a few smoke tests in this tool to aid QA team.
+
 # important
 
 1. Algorithm doesn't work for float numbers, as some values are used as a matrix index. In real life situation I would ask the business about that, since there is no requirement for that in a task, and I am assuming that the app is only for the demonstration purposes.
