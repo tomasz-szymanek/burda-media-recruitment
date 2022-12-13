@@ -10,6 +10,19 @@ interface KnapsackItem {
 
 @injectable()
 export class CalculateOptimalShoppingList {
+  public execute = (amountOfPurchases: number, products: Item[]): Item[] => {
+    const result = this.calculateKnapsack(
+      this.parse(products),
+      amountOfPurchases
+    );
+
+    return result.subset.map((item: KnapsackItem) => ({
+      price: item.weight,
+      review_rating: item.value,
+      name: item.name,
+    }));
+  };
+
   private calculateKnapsack(
     items: KnapsackItem[],
     limit: number
@@ -85,17 +98,4 @@ export class CalculateOptimalShoppingList {
       name: product.name,
     }));
   }
-
-  public execute = (amountOfPurchases: number, products: Item[]): Item[] => {
-    const result = this.calculateKnapsack(
-      this.parse(products),
-      amountOfPurchases
-    );
-
-    return result.subset.map((item: KnapsackItem) => ({
-      price: item.weight,
-      review_rating: item.value,
-      name: item.name,
-    }));
-  };
 }
