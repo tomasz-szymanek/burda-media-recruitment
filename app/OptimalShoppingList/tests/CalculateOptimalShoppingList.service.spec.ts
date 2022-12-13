@@ -23,7 +23,8 @@ describe("getOptimalShoppingList", () => {
       { name: "example7", review_rating: 15, price: 4 },
     ]);
 
-    const expectedArray = [
+    expect(result).to.not.equal(null);
+    expect(result).to.have.deep.members([
       {
         price: 215,
         review_rating: 600,
@@ -39,10 +40,7 @@ describe("getOptimalShoppingList", () => {
         review_rating: 3,
         name: "example6",
       },
-    ];
-
-    expect(result).to.not.equal(null);
-    expect(result).to.have.deep.members(expectedArray);
+    ]);
   });
 
   it("should return empty array when no items are passed", async () => {
