@@ -51,3 +51,5 @@ http://localhost:${PORT}/documentation
 1. Algorithm doesn't work for float numbers, as some values are used as a matrix index. In real life situation I would ask the business about that, since there is no requirement for that in a task, and I am assuming that the app is only for the demonstration purposes.
 
 2. Swagger doc is for demonstration purposes, it lacks types that should be moved to definitions folder, otherwise annotations would get too long in the controller. In final version of the apps they would be available in YAML format under specific endpoint for swagger to consume.
+
+3. Knapsack calculation function was inspired by the stuff found online, but I think my implementation is much cleaner. I think I've achived a thin balance between polishing the code on the one side and reinventing the wheel on the other.  
